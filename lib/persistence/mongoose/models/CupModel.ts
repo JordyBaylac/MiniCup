@@ -1,22 +1,13 @@
 import * as mongoose from 'mongoose';
 
 const CupSchema = new mongoose.Schema({
-    firstName: {
+    id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: 'Cup id is required'
+    },
+    name: {
         type: String,
         required: 'Enter a first name'
-    },
-    lastName: {
-        type: String,
-        required: 'Enter a first name'
-    },
-    email: {
-        type: String            
-    },
-    company: {
-        type: String            
-    },
-    phone: {
-        type: Number            
     },
     created_date: {
         type: Date,

@@ -1,11 +1,18 @@
 
-import { CupModel } from '../models/CupModel';
+import Cup from '../domain/Cup';
 import { Request, Response } from 'express';
+import { TCupService, ICupService } from '../interfaces/ICupService';
+import { Inject } from 'container-ioc';
 
 
-export class CupController{
+export class CupController {
+
+    constructor(@Inject(TCupService) private service: ICupService) {}
 
     public addNewCup (req: Request, res: Response) {   
+
+        
+        this.service.createCup(cup);
 
         let newCup = new CupModel(req.body);
         newCup

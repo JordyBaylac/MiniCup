@@ -1,4 +1,4 @@
-import { Cup } from "../domain/Cup";
+import Cup from "../domain/Cup";
 
 export const TCupService = Symbol('ICupService');
 
