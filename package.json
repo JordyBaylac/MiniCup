@@ -1,0 +1,26 @@
+{
+  "name": "mini_cup",
+  "version": "1.0.0",
+  "description": "Mini Cup server",
+  "main": "main.js",
+  "scripts": {
+    "build": "tsc && npm run lint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/mongoose": "^5.2.4",
+    "@types/node": "^10.5.7",
+    "ts-node": "^7.0.0",
+    "typescript": "^3.0.1"
+  },
+  "dependencies": {
+    "@types/express": "^4.16.0",
+    "body-parser": "^1.18.3",
+    "container-ioc": "^1.7.19",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.7",
+    "nodemon": "^1.18.3"
+  }
+}
