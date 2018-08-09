@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose';
+import * as validator from 'validator';
 
 export const CupSchema = new mongoose.Schema({
     id: {
@@ -12,6 +13,15 @@ export const CupSchema = new mongoose.Schema({
     created_date: {
         type: Date,
         default: Date.now
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        validate: (value) => {
+            return validator.isEmail(value)
+        }
     }
 });
 
