@@ -1,14 +1,20 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
-import * as mongoose from "mongoose";
+import { Routes } from "./Routes";
+import { DependencyLocator } from "./DependencyLocator";
+import { IConnectionService } from "./IConnection";
 
 class App {
 
   public app: express.Application;
-  public mongoUrl: string = 'mongodb://dalenguyen:123123@localhost:27017/CRMdb';
+  public routes: Routes;
+  public connection: IConnectionService;
 
   constructor() {
     this.app = express();
+    this.routes = new Routes(DependencyLocator.Controllers.getCupController());
+    this.connection = DependencyLocator.Services.getConnectionService();
+    
     this.config();
   }
 
@@ -18,12 +24,9 @@ class App {
 
     //support application/x-www-form-urlencoded post data
     this.app.use(bodyParser.urlencoded({ extended: false }));
-  }
 
-  
-  private mongoSetup(): void {
-    (<any>mongoose).Promise = global.Promise;
-    mongoose.connect(this.mongoUrl);
+    this.routes.configure(this.app);
+    this.connection.configure();
   }
   
 }

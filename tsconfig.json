@@ -10,7 +10,8 @@
        "es2015",
        "es2017"
      ],
-     "experimentalDecorators": true
+     "experimentalDecorators": true,
+     "emitDecoratorMetadata": true
   },
   "files": [
      "./node_modules/@types/node/index.d.ts"

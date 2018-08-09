@@ -1,4 +1,4 @@
-import ICup from "../domain/models/ICup";
+import ICup from "./models/ICup";
 
 export const TCupFactory = Symbol('ICupFactory');
 

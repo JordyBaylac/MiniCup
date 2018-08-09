@@ -2,15 +2,19 @@ import {Injectable, Inject} from 'container-ioc';
 import {ICupService} from '../../ICupService';
 import ICup from '../../../domain/models/ICup';
 import {MongooseModelMapper} from '../ModelMapper';
+import { IModelMapper, TModelMapper } from '../../IModelMapper';
 
 @Injectable()
 export class MongooseCupService implements ICupService {
 
-    protected mapper : MongooseModelMapper;
+    // protected mapper : MongooseModelMapper;
 
-    constructor() {
-        this.mapper = new MongooseModelMapper();
-    }
+    // constructor() {
+    //     this.mapper = new MongooseModelMapper();
+    // }
+
+    constructor(@Inject(TModelMapper)protected mapper : MongooseModelMapper) {}
+
 
     async addCup(cup : ICup) : Promise <boolean> {
 

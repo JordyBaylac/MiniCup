@@ -1,12 +1,15 @@
-import {Request, Response, NextFunction} from "express";
-import {CupController} from "../controllers/CupController";
+import {Request, Response, NextFunction, Application} from "express";
+import {CupController, ICupController, TCupController} from "../controllers/CupController";
 import {DependencyLocator} from "./DependencyLocator";
+import { Inject } from "container-ioc";
 
 export class Routes {
 
-    public cupController : CupController = new CupController(DependencyLocator.Factories.getCupFactory(), DependencyLocator.Services.getCupService(),);
+    // public cupController : CupController = new CupController(DependencyLocator.Factories.getCupFactory(), DependencyLocator.Services.getCupService(),);
+    constructor(@Inject(TCupController) private cupController  : ICupController,) {}
 
-    public routes(app) : void {
+
+    public configure(app: Application) : void {
 
         app
             .route('/')
