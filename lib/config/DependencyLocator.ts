@@ -1,13 +1,12 @@
 import { Container, LifeTime } from 'container-ioc';
-import { TCupFactory, ICupFactory } from '../domain/ICupFactory';
-import { CupFactory } from '../domain/CupFactory';
+import { CupFactory, TCupFactory, ICupFactory } from '../domain/CupFactory';
 import { TCupService, ICupService } from '../persistence/ICupService';
 import { MongooseCupService } from '../persistence/mongoose/services/CupService';
 import { TModelMapper } from '../persistence/IModelMapper';
 import { MongooseModelMapper } from '../persistence/mongoose/ModelMapper';
 import { TCupController, CupController, ICupController } from '../controllers/CupController';
 import { TConnectionService, IConnectionService } from './IConnection';
-import { MongooseConnectionService } from '../persistence/mongoose/ConnectionService';
+import { MongooseConnectionService } from '../persistence/mongoose/services/ConnectionService';
  
 let container = new Container();
  

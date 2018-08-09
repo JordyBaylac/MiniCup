@@ -2,7 +2,7 @@
 import {Request, Response} from 'express';
 import {TCupService, ICupService} from '../persistence/ICupService';
 import {Inject, Injectable} from 'container-ioc';
-import {TCupFactory, ICupFactory} from '../domain/ICupFactory';
+import {TCupFactory, ICupFactory} from '../domain/CupFactory';
 import * as HttpStatus from 'http-status-codes';
 
 export const TCupController = Symbol('ICupController');
@@ -75,7 +75,7 @@ export class CupController implements ICupController {
     public updateCup(req : Request, res : Response) {
         this.throwNotImplementedRequest(res);
         // RegularCup.findOneAndUpdate({     _id: req.params.cupId }, req.body, { new:
-        // true }, (err, cup) => {     if (err) {         res.send(err);     }
+        // true, runValidators: true }, (err, cup) => {     if (err) {         res.send(err);     }
         // res.json(cup); });
     }
 
