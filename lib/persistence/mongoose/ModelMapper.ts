@@ -15,7 +15,7 @@ export class MongooseModelMapper implements IModelMapper {
         if(cup instanceof RegularCup) 
             return new CupModel({myMongooseId: cup.id});
         if (cup instanceof ProfessionalCup) 
-            return new CupModel({myMongooseId: cup.id});
+            return new CupModel({myMongooseId: cup.id, proInfo: cup.likes});
         throw "mongoose mapper didn't found a match for cup provided";
     }
 
