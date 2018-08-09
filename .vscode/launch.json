@@ -13,6 +13,10 @@
             "sourceMaps": true,
             "cwd": "${workspaceRoot}",
             "protocol": "inspector",
+            "env": {
+                "DEBUG": "*,-not_this",
+                "DEBUG_COLORS": "true"
+            }
         }
     ]
 }

@@ -1,6 +1,12 @@
 import { IConnectionService } from "../../config/IConnection";
 import * as mongoose from "mongoose";
 import { Injectable } from "../../../node_modules/container-ioc";
+import * as debug from 'debug';
+
+const log = debug('MongooseConnectionService');
+const logError = debug('MongooseConnectionService:error');
+log.log = console.log.bind(console);
+logError.log = console.error.bind(console);
 
 @Injectable()
 export class MongooseConnectionService implements IConnectionService {
@@ -12,10 +18,10 @@ export class MongooseConnectionService implements IConnectionService {
         //TODO: read url
         
         mongoose.connect(this.mongoUrl).then((value)=>{
-            console.log('mongoose connected', value);
+            log('mongoose connected', value);
         })
         .catch((err)=>{
-            console.error('mongoose error', err);
+            logError('mongoose error %O', err);
         })
     }
 

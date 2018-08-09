@@ -3,6 +3,9 @@ import {ICupService} from '../../ICupService';
 import ICup from '../../../domain/models/ICup';
 import {MongooseModelMapper} from '../ModelMapper';
 import { IModelMapper, TModelMapper } from '../../IModelMapper';
+import * as debug from 'debug';
+
+const log = debug('MongooseCupService');
 
 @Injectable()
 export class MongooseCupService implements ICupService {
@@ -24,7 +27,7 @@ export class MongooseCupService implements ICupService {
             let document = await cupDto.save();
             return true;
         } catch (e) {
-            console.error('there was an error', e);
+            log('there was an error %o', e);
             return false;
         }
 
