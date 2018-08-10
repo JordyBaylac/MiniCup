@@ -5,18 +5,48 @@ import { MongooseCupService } from '../persistence/mongoose/services/CupService'
 import { TModelMapper } from '../persistence/IModelMapper';
 import { MongooseModelMapper } from '../persistence/mongoose/ModelMapper';
 import { TCupController, CupController, ICupController } from '../controllers/CupController';
-import { TConnectionService, IConnectionService } from './IConnection';
+import { TConnectionService, IConnectionService, DumbConnectionService } from './IConnection';
 import { MongooseConnectionService } from '../persistence/mongoose/services/ConnectionService';
+import { InMemoryCupService } from '../persistence/in_memory/services/CupService';
+import { InMemoryModelMapper } from '../persistence/in_memory/ModelMapper';
  
+enum PersistenceMode {InMemory, Mongoose}
 let container = new Container();
  
+// container.register([
+//     { token: TCupFactory, useClass: CupFactory },
+//     { token: TCupService, useClass: MongooseCupService },
+//     { token: TModelMapper, useClass: MongooseModelMapper, lifeTime: LifeTime.Persistent},
+//     { token: TCupController, useClass: CupController },
+//     { token: TConnectionService, useClass: MongooseConnectionService, lifeTime: LifeTime.Persistent},
+// ]);
+
 container.register([
     { token: TCupFactory, useClass: CupFactory },
-    { token: TCupService, useClass: MongooseCupService },
-    { token: TModelMapper, useClass: MongooseModelMapper, lifeTime: LifeTime.Persistent},
     { token: TCupController, useClass: CupController },
-    { token: TConnectionService, useClass: MongooseConnectionService, lifeTime: LifeTime.Persistent},
 ]);
+
+configurePersistence(container, PersistenceMode.InMemory);
+
+function configurePersistence(container: Container, mode: PersistenceMode) : void {
+    if (mode == PersistenceMode.InMemory) {
+        container.register([
+            { token: TCupService, useClass: InMemoryCupService },
+            { token: TModelMapper, useClass: InMemoryModelMapper, lifeTime: LifeTime.Persistent},
+            { token: TConnectionService, useClass: DumbConnectionService, lifeTime: LifeTime.Persistent},
+        ]);
+    }
+    else if (mode == PersistenceMode.Mongoose) {
+        container.register([
+            { token: TCupService, useClass: MongooseCupService },
+            { token: TModelMapper, useClass: MongooseModelMapper, lifeTime: LifeTime.Persistent},
+            { token: TConnectionService, useClass: MongooseConnectionService, lifeTime: LifeTime.Persistent},
+        ]);
+    } 
+    else {
+        throw 'cannot configure presistence in unkown mode ' + mode;
+    }
+}
 
 export const DependencyLocator = {
     Factories: {
