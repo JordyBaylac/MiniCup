@@ -13,14 +13,6 @@ import { InMemoryModelMapper } from '../persistence/in_memory/ModelMapper';
 enum PersistenceMode {InMemory, Mongoose}
 let container = new Container();
  
-// container.register([
-//     { token: TCupFactory, useClass: CupFactory },
-//     { token: TCupService, useClass: MongooseCupService },
-//     { token: TModelMapper, useClass: MongooseModelMapper, lifeTime: LifeTime.Persistent},
-//     { token: TCupController, useClass: CupController },
-//     { token: TConnectionService, useClass: MongooseConnectionService, lifeTime: LifeTime.Persistent},
-// ]);
-
 container.register([
     { token: TCupFactory, useClass: CupFactory },
     { token: TCupController, useClass: CupController },

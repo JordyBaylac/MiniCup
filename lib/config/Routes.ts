@@ -2,13 +2,13 @@ import {Request, Response, NextFunction, Application} from "express";
 import {CupController, ICupController, TCupController} from "../controllers/CupController";
 import {DependencyLocator} from "./DependencyLocator";
 import { Inject } from "container-ioc";
+import * as HttpStatus from 'http-status-codes';
 
 export class Routes {
 
-    // public cupController : CupController = new CupController(DependencyLocator.Factories.getCupFactory(), DependencyLocator.Services.getCupService(),);
     constructor(@Inject(TCupController) private cupController  : ICupController,) {}
 
-
+    
     public configure(app: Application) : void {
 
         app
@@ -28,22 +28,22 @@ export class Routes {
                 console.log(`Request type: ${req.method}`);
                 if (req.query.key !== '78942ef2c1c98bf10fca09c808d718fa3734703e') {
                     res
-                        .status(401)
+                        .status(HttpStatus.UNAUTHORIZED)
                         .send('You shall not pass!');
                 } else {
                     next();
                 }
-            }, this.cupController.getCups)
+            }, this.cupController.getCups.bind(this.cupController))
 
             // POST endpoint
-            .post(this.cupController.addNewCup);
+            .post(this.cupController.addNewCup.bind(this.cupController));
 
         // Cup detail
         app
             .route('/cup/:cupId')
-            .get(this.cupController.getCupByID)
-            .put(this.cupController.updateCup)
-            .delete(this.cupController.deleteCup);
+            .get(this.cupController.getCupByID.bind(this.cupController))
+            .put(this.cupController.updateCup.bind(this.cupController))
+            .delete(this.cupController.deleteCup.bind(this.cupController));
 
     }
 }

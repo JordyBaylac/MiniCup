@@ -14,7 +14,6 @@ export interface ICupFactory {
 export class CupFactory implements ICupFactory {
 
     createCup(options: any): ICup{
-
         let cup: ICup;
         if(options.cupType == 'regular'){
             cup = new RegularCup();
@@ -22,9 +21,10 @@ export class CupFactory implements ICupFactory {
         else if(options.cupType == 'pro'){
             cup = new ProfessionalCup();
         }
+        else
+            throw 'unknown cup type';
 
         return cup;
-
     }
 
 }

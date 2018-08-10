@@ -3,6 +3,7 @@ import * as bodyParser from "body-parser";
 import { Routes } from "./Routes";
 import { DependencyLocator } from "./DependencyLocator";
 import { IConnectionService } from "./IConnection";
+import * as helmet from "helmet";
 
 class App {
 
@@ -19,6 +20,7 @@ class App {
   }
 
   private config(): void {
+    this.app.use(helmet());
     // support application/json type post data
     this.app.use(bodyParser.json({limit: '50kb'}));
 
