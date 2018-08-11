@@ -1,5 +1,5 @@
 
 
-export class InMemoryCupModel {
+export class InMemoryTournamentModel {
     numberOfParticipants: number;
 }

@@ -1,21 +1,21 @@
-import {Injectable} from 'container-ioc';
-import {IModelMapper} from '../IModelMapper';
-import RegularCup from '../../domain/models/RegularCup';
-import ProfessionalCup from '../../domain/models/ProfessionalCup';
-import {InMemoryCupModel} from './models/Models';
+import { Injectable } from 'container-ioc';
+import { LeagueTournament } from '../../domain/models/LeagueTournament';
+import { PlayoffTournament } from '../../domain/models/PlayoffTournament';
+import { IModelMapper } from '../IModelMapper';
+import { InMemoryTournamentModel } from './models/Models';
 
 @Injectable()
 export class InMemoryModelMapper implements IModelMapper {
 
-    from(cup : RegularCup) : InMemoryCupModel;
-    from(cup : ProfessionalCup) : InMemoryCupModel;
+    from(tournament: LeagueTournament): InMemoryTournamentModel;
+    from(tournament: PlayoffTournament): InMemoryTournamentModel;
 
-    from(cup : RegularCup | ProfessionalCup) : InMemoryCupModel {
-        if(cup instanceof RegularCup) 
-            return new InMemoryCupModel();
-        if (cup instanceof ProfessionalCup) 
-            return new InMemoryCupModel();
-        throw "in memory mapper didn't found a match for cup provided";
+    from(tournament: LeagueTournament | PlayoffTournament): InMemoryTournamentModel {
+        if (tournament instanceof LeagueTournament)
+            return new InMemoryTournamentModel();
+        if (tournament instanceof PlayoffTournament)
+            return new InMemoryTournamentModel();
+        throw "in memory mapper didn't found a match for tournament provided";
     }
 
 }

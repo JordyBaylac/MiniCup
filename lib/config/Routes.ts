@@ -1,12 +1,12 @@
 import {Request, Response, NextFunction, Application} from "express";
-import {CupController, ICupController, TCupController} from "../controllers/CupController";
+import {TournamentController, ITournamentController, TTournamentController} from "../controllers/TournamentController";
 import {DependencyLocator} from "./DependencyLocator";
 import { Inject } from "container-ioc";
 import * as HttpStatus from 'http-status-codes';
 
 export class Routes {
 
-    constructor(@Inject(TCupController) private cupController  : ICupController,) {}
+    constructor(@Inject(TTournamentController) private tournamentController  : ITournamentController,) {}
 
     
     public configure(app: Application) : void {
@@ -19,9 +19,9 @@ export class Routes {
                     .send({message: 'GET request successfulll!!!!'})
             })
 
-            // Cup
+            // Tournament
             app
-            .route('/cup')
+            .route('/tournament')
             .get((req : Request, res : Response, next : NextFunction) => {
                 // middleware
                 console.log(`Request from: ${req.originalUrl}`);
@@ -33,17 +33,17 @@ export class Routes {
                 } else {
                     next();
                 }
-            }, this.cupController.getCups.bind(this.cupController))
+            }, this.tournamentController.getTournaments.bind(this.tournamentController))
 
             // POST endpoint
-            .post(this.cupController.addNewCup.bind(this.cupController));
+            .post(this.tournamentController.addNewTournament.bind(this.tournamentController));
 
-        // Cup detail
+        // Tournament detail
         app
-            .route('/cup/:cupId')
-            .get(this.cupController.getCupByID.bind(this.cupController))
-            .put(this.cupController.updateCup.bind(this.cupController))
-            .delete(this.cupController.deleteCup.bind(this.cupController));
+            .route('/tournament/:tournamentId')
+            .get(this.tournamentController.getTournamentByID.bind(this.tournamentController))
+            .put(this.tournamentController.updateTournament.bind(this.tournamentController))
+            .delete(this.tournamentController.deleteTournament.bind(this.tournamentController));
 
     }
 }

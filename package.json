@@ -1,7 +1,7 @@
 {
   "name": "mini_cup",
   "version": "1.0.0",
-  "description": "Mini Cup server",
+  "description": "Mini Tournament server",
   "main": "main.js",
   "scripts": {
     "build": "tsc && npm run lint",

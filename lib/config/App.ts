@@ -1,9 +1,9 @@
-import * as express from "express";
 import * as bodyParser from "body-parser";
-import { Routes } from "./Routes";
+import * as express from "express";
+import * as helmet from "helmet";
 import { DependencyLocator } from "./DependencyLocator";
 import { IConnectionService } from "./IConnection";
-import * as helmet from "helmet";
+import { Routes } from "./Routes";
 
 class App {
 
@@ -13,7 +13,7 @@ class App {
 
   constructor() {
     this.app = express();
-    this.routes = new Routes(DependencyLocator.Controllers.getCupController());
+    this.routes = new Routes(DependencyLocator.Controllers.getTournamentController());
     this.connection = DependencyLocator.Services.getConnectionService();
     
     this.config();
