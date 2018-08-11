@@ -15,17 +15,17 @@ export interface ITournamentFactory {
 export class TournamentFactory implements ITournamentFactory {
 
     createTournament(options: any): ITournament {
-        let cup: ITournament;
-        if (options.cupType == 'regular') {
-            cup = new LeagueTournament();
+        let tournament: ITournament;
+        if (options.tournamentType == 'regular') {
+            tournament = new LeagueTournament();
         }
-        else if (options.cupType == 'pro') {
-            cup = new PlayoffTournament();
+        else if (options.tournamentType == 'pro') {
+            tournament = new PlayoffTournament();
         }
         else
-            throw 'unknown cup type';
+            throw 'unknown tournament type';
 
-        return cup;
+        return tournament;
     }
 
 }

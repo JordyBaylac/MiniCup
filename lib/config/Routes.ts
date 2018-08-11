@@ -1,28 +1,27 @@
-import {Request, Response, NextFunction, Application} from "express";
-import {TournamentController, ITournamentController, TTournamentController} from "../controllers/TournamentController";
-import {DependencyLocator} from "./DependencyLocator";
-import { Inject } from "container-ioc";
+import { Inject } from 'container-ioc';
+import { Application, NextFunction, Request, Response } from 'express';
 import * as HttpStatus from 'http-status-codes';
+import { ITournamentController, TTournamentController } from '../controllers/TournamentController';
 
 export class Routes {
 
-    constructor(@Inject(TTournamentController) private tournamentController  : ITournamentController,) {}
+    constructor(@Inject(TTournamentController) private tournamentController: ITournamentController, ) { }
 
-    
-    public configure(app: Application) : void {
+
+    public configure(app: Application): void {
 
         app
             .route('/')
-            .get((req : Request, res : Response) => {
+            .get((req: Request, res: Response) => {
                 res
                     .status(200)
-                    .send({message: 'GET request successfulll!!!!'})
+                    .send({ message: 'GET request successfulll!!!!' })
             })
 
-            // Tournament
-            app
+        // Tournament
+        app
             .route('/tournament')
-            .get((req : Request, res : Response, next : NextFunction) => {
+            .get((req: Request, res: Response, next: NextFunction) => {
                 // middleware
                 console.log(`Request from: ${req.originalUrl}`);
                 console.log(`Request type: ${req.method}`);
