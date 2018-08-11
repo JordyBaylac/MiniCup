@@ -1,7 +1,6 @@
-import ITournament from './models/ITournament';
+
 import { Injectable } from 'container-ioc';
-import { LeagueTournament } from './models/LeagueTournament';
-import { PlayoffTournament } from './models/PlayoffTournament';
+import { ITournament, LeagueTournament, PlayoffTournament } from './models/tournaments';
 
 
 export const TTournamentFactory = Symbol('ITournamentFactory');
@@ -16,7 +15,7 @@ export class TournamentFactory implements ITournamentFactory {
 
     createTournament(options: any): ITournament {
         let tournament: ITournament;
-        if (options.tournamentType == 'regular') {
+        if (options.type == 'regular') {
             tournament = new LeagueTournament();
         }
         else if (options.tournamentType == 'pro') {

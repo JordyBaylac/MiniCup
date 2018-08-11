@@ -1,6 +1,5 @@
 import { Injectable } from 'container-ioc';
-import { LeagueTournament } from '../../domain/models/LeagueTournament';
-import { PlayoffTournament } from '../../domain/models/PlayoffTournament';
+import { LeagueTournament, PlayoffTournament } from '../../domain/models/tournaments';
 import { IModelMapper } from '../IModelMapper';
 import { InMemoryTournamentModel } from './models/Models';
 

@@ -1,4 +1,4 @@
-import ITournament from "../domain/models/ITournament";
+import { ITournament } from "../domain/models/tournaments";
 
 export const TTournamentService = Symbol('ITournamentService');
 

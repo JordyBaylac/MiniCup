@@ -1,9 +1,9 @@
 
-import {Request, Response} from 'express';
-import {TTournamentService, ITournamentService} from '../persistence/ITournamentService';
-import {Inject, Injectable} from 'container-ioc';
-import {TTournamentFactory, ITournamentFactory} from '../domain/TournamentFactory';
+import { Inject, Injectable } from 'container-ioc';
+import { Request, Response } from 'express';
 import * as HttpStatus from 'http-status-codes';
+import { ITournamentFactory, TTournamentFactory } from '../domain/TournamentFactory';
+import { ITournamentService, TTournamentService } from '../persistence/ITournamentService';
 
 export const TTournamentController = Symbol('ITournamentController');
 

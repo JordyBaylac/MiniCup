@@ -1,7 +1,7 @@
-import { IConnectionService } from "../../../config/IConnection";
-import * as mongoose from "mongoose";
 import { Injectable } from "container-ioc";
 import * as debug from 'debug';
+import * as mongoose from "mongoose";
+import { IConnectionService } from "../../../config/IConnection";
 
 const log = debug('MongooseConnectionService');
 const logError = debug('MongooseConnectionService:error');

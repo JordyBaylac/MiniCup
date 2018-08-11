@@ -1,7 +1,6 @@
 import { Injectable } from 'container-ioc';
 import { Document } from 'mongoose';
-import { LeagueTournament } from '../../domain/models/LeagueTournament';
-import { PlayoffTournament } from '../../domain/models/PlayoffTournament';
+import { LeagueTournament, PlayoffTournament } from '../../domain/models/tournaments';
 import { IModelMapper } from '../IModelMapper';
 import { LeagueTournamentModel } from './models/LeagueTournament';
 

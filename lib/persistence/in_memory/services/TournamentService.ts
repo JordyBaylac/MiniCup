@@ -1,10 +1,10 @@
 
-import {Injectable, Inject} from 'container-ioc';
-import {ITournamentService} from '../../ITournamentService';
-import ITournament from '../../../domain/models/ITournament';
-import {InMemoryModelMapper} from '../ModelMapper';
-import { TModelMapper } from '../../IModelMapper';
+import { Inject, Injectable } from 'container-ioc';
 import * as debug from 'debug';
+import { ITournament } from '../../../domain/models/tournaments';
+import { TModelMapper } from '../../IModelMapper';
+import { ITournamentService } from '../../ITournamentService';
+import { InMemoryModelMapper } from '../ModelMapper';
 import { InMemoryTournamentModel } from '../models/Models';
 
 const log = debug('InMemoryTournamentService');

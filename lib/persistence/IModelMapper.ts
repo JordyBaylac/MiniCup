@@ -1,5 +1,5 @@
+import { ITournament } from '../domain/models/tournaments';
 
-import ITournament from "../domain/models/ITournament";
 
 export const TModelMapper = Symbol('IModelMapper');
 
