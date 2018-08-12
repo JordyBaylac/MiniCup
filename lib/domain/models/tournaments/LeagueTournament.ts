@@ -4,8 +4,8 @@ import { ITournament } from "./ITournament";
 export class LeagueTournament implements ITournament {
     
     
-    id: string;
-    name: string;
-    participants: IParticipant[];
+    public id: string;
+    public name: string;
+    public participants: IParticipant[];
 
 }

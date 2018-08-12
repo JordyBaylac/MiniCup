@@ -10,20 +10,20 @@ const log = debug('MongooseTournamentService');
 @Injectable()
 export class MongooseTournamentService implements ITournamentService {
 
-    constructor(@Inject(TModelMapper)protected mapper : MongooseModelMapper) {}
+    constructor(@Inject(TModelMapper) protected mapper: MongooseModelMapper) { }
 
-    async addTournament(tournament : ITournament) : Promise <boolean> {
+    public async addTournament(tournament: ITournament): Promise<boolean> {
         try {
-            let tournamentDto = this.mapper.from(tournament);
-            let document = await tournamentDto.save();
+            const tournamentDto = this.mapper.from(tournament);
+            const document = await tournamentDto.save();
             return true;
         } catch (e) {
             log('there was an error %o', e);
             return false;
         }
     }
-    
-    removeTournament(tournamentId: number): Promise<boolean> {
+
+    public removeTournament(tournamentId: number): Promise<boolean> {
         throw new Error("Method not implemented.");
     }
 

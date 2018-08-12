@@ -5,5 +5,5 @@ export interface ITournament {
 
     name: string;
 
-    participants: IParticipant[]
+    participants: IParticipant[];
 }

@@ -7,15 +7,17 @@ import { LeagueTournamentModel } from './models/LeagueTournament';
 @Injectable()
 export class MongooseModelMapper implements IModelMapper {
 
-    from(tournament: LeagueTournament): Document;
-    from(tournament: PlayoffTournament): Document;
+    // public from(tournament: LeagueTournament): Document;
+    // public from(tournament: PlayoffTournament): Document;
 
-    from(tournament: LeagueTournament | PlayoffTournament): Document {
-        if (tournament instanceof LeagueTournament)
+    public from(tournament: LeagueTournament | PlayoffTournament): Document {
+        if (tournament instanceof LeagueTournament) {
             return new LeagueTournamentModel({ myMongooseId: tournament.id });
-        if (tournament instanceof PlayoffTournament)
+        }
+        if (tournament instanceof PlayoffTournament) {
             return new LeagueTournamentModel({ myMongooseId: tournament.id, proInfo: tournament });
-        throw "mongoose mapper didn't found a match for tournamen provided";
+        }
+        throw new Error("mongoose mapper didn't found a match for tournamen provided");
     }
 
 }

@@ -12,14 +12,14 @@ const log = debug('InMemoryTournamentService');
 @Injectable()
 export class InMemoryTournamentService implements ITournamentService {
 
-    private _tournamentlist: InMemoryTournamentModel[] = [];
+    private tournamentlist: InMemoryTournamentModel[] = [];
 
-    constructor(@Inject(TModelMapper)protected mapper : InMemoryModelMapper) {}
+    constructor(@Inject(TModelMapper) protected mapper: InMemoryModelMapper) { }
 
-    async addTournament(tournament : ITournament) : Promise <boolean> {
+    public async addTournament(tournament: ITournament): Promise<boolean> {
         try {
-            let tournamentDto = this.mapper.from(tournament);
-            this._tournamentlist.push(tournamentDto);
+            const tournamentDto = this.mapper.from(tournament);
+            this.tournamentlist.push(tournamentDto);
             log('tournament added %o', tournamentDto);
             return true;
         } catch (e) {
@@ -27,8 +27,8 @@ export class InMemoryTournamentService implements ITournamentService {
             return false;
         }
     }
-    
-    removeTournament(tournamentId: number): Promise<boolean> {
+
+    public removeTournament(tournamentId: number): Promise<boolean> {
         throw new Error("Method not implemented.");
     }
 

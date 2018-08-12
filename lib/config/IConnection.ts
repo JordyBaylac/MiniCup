@@ -14,7 +14,7 @@ log.log = console.log.bind(console);
 @Injectable()
 export class DumbConnectionService implements IConnectionService {
 
-    configure() {
+    public configure() {
         log('not connection required');
     }
 

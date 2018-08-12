@@ -1,5 +1,5 @@
 
 
 export class InMemoryTournamentModel {
-    numberOfParticipants: number;
+    public numberOfParticipants: number;
 }

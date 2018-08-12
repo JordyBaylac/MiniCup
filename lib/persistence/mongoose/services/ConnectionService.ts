@@ -13,16 +13,16 @@ export class MongooseConnectionService implements IConnectionService {
 
     public mongoUrl: string = 'mongodb://dalenguyen:123123@localhost:27017/CRMdb';
 
-    configure() {
-        (<any>mongoose).Promise = global.Promise;
+    public configure() {
+        (mongoose as any).Promise = global.Promise;
         //TODO: read url
-        
-        mongoose.connect(this.mongoUrl).then((value)=>{
+
+        mongoose.connect(this.mongoUrl).then((value) => {
             log('mongoose connected', value);
         })
-        .catch((err)=>{
-            logError('mongoose error %O', err);
-        })
+            .catch((err) => {
+                logError('mongoose error %O', err);
+            });
     }
 
 }

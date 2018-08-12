@@ -13,16 +13,15 @@ export interface ITournamentFactory {
 @Injectable()
 export class TournamentFactory implements ITournamentFactory {
 
-    createTournament(options: any): ITournament {
+    public createTournament(options: any): ITournament {
         let tournament: ITournament;
-        if (options.type == 'regular') {
-            tournament = new LeagueTournament();
+        if (options.type === 'league') {
+            tournament = new LeagueTournament(options);
+        } else if (options.tournamentType === 'playoff') {
+            tournament = new PlayoffTournament(options);
+        } else {
+            throw new Error('unknown tournament type');
         }
-        else if (options.tournamentType == 'pro') {
-            tournament = new PlayoffTournament();
-        }
-        else
-            throw 'unknown tournament type';
 
         return tournament;
     }

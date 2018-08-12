@@ -16,7 +16,7 @@ export const TournamentSchema = new mongoose.Schema({
         unique: true,
         lowercase: true,
         validate: (value) => {
-            return validator.isEmail(value)
+            return validator.isEmail(value);
         }
     }
 });

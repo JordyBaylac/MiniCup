@@ -1,5 +1,8 @@
 import { Container, LifeTime } from 'container-ioc';
-import { ITournamentController, TournamentController, TTournamentController } from '../controllers/TournamentController';
+import { 
+    ITournamentController, 
+    TournamentController, 
+    TTournamentController } from '../controllers/TournamentController';
 import { ITournamentFactory, TournamentFactory, TTournamentFactory } from '../domain/TournamentFactory';
 import { TModelMapper } from '../persistence/IModelMapper';
 import { InMemoryModelMapper } from '../persistence/in_memory/ModelMapper';
@@ -11,44 +14,42 @@ import { MongooseTournamentService } from '../persistence/mongoose/services/Tour
 import { DumbConnectionService, IConnectionService, TConnectionService } from './IConnection';
 
 enum PersistenceMode { InMemory, Mongoose }
-let container = new Container();
+const container = new Container();
 
 container.register([
     { token: TTournamentFactory, useClass: TournamentFactory },
     { token: TTournamentController, useClass: TournamentController },
 ]);
 
-configurePersistence(container, PersistenceMode.InMemory);
+configurePersistence(PersistenceMode.InMemory);
 
-function configurePersistence(container: Container, mode: PersistenceMode): void {
-    if (mode == PersistenceMode.InMemory) {
+function configurePersistence(mode: PersistenceMode): void {
+    if (mode === PersistenceMode.InMemory) {
         container.register([
             { token: TTournamentService, useClass: InMemoryTournamentService },
             { token: TModelMapper, useClass: InMemoryModelMapper, lifeTime: LifeTime.Persistent },
             { token: TConnectionService, useClass: DumbConnectionService, lifeTime: LifeTime.Persistent },
         ]);
-    }
-    else if (mode == PersistenceMode.Mongoose) {
+    } else if (mode === PersistenceMode.Mongoose) {
         container.register([
             { token: TTournamentService, useClass: MongooseTournamentService },
             { token: TModelMapper, useClass: MongooseModelMapper, lifeTime: LifeTime.Persistent },
             { token: TConnectionService, useClass: MongooseConnectionService, lifeTime: LifeTime.Persistent },
         ]);
-    }
-    else {
-        throw 'cannot configure presistence in unkown mode ' + mode;
+    } else {
+        throw new Error('cannot configure presistence in unkown mode ' + mode);
     }
 }
 
 export const DependencyLocator = {
+    Controllers: {
+        getTournamentController: (): ITournamentController => container.resolve(TTournamentController),
+    },
     Factories: {
         getTournamentFactory: (): ITournamentFactory => container.resolve(TTournamentFactory),
     },
     Services: {
-        getTournamentService: (): ITournamentService => container.resolve(TTournamentService),
         getConnectionService: (): IConnectionService => container.resolve(TConnectionService),
-    },
-    Controllers: {
-        getTournamentController: (): ITournamentController => container.resolve(TTournamentController),
-    },
+        getTournamentService: (): ITournamentService => container.resolve(TTournamentService),        
+    },    
 };

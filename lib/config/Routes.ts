@@ -15,8 +15,8 @@ export class Routes {
             .get((req: Request, res: Response) => {
                 res
                     .status(200)
-                    .send({ message: 'GET request successfulll!!!!' })
-            })
+                    .send({ message: 'GET request successfulll!!!!' });
+            });
 
         // Tournament
         app
