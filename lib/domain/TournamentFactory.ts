@@ -16,9 +16,9 @@ export class TournamentFactory implements ITournamentFactory {
     public createTournament(options: any): ITournament {
         let tournament: ITournament;
         if (options.type === 'league') {
-            tournament = new LeagueTournament(options);
-        } else if (options.tournamentType === 'playoff') {
-            tournament = new PlayoffTournament(options);
+            tournament = new LeagueTournament();
+        } else if (options.type === 'playoff') {
+            tournament = new PlayoffTournament();
         } else {
             throw new Error('unknown tournament type');
         }
