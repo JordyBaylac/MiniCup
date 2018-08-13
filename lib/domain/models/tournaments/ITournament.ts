@@ -1,4 +1,5 @@
 import { IParticipant } from "../participants";
+import { IStats } from "../stats";
 
 export interface ITournament {
     id: string;
@@ -6,4 +7,6 @@ export interface ITournament {
     name: string;
 
     participants: IParticipant[];
+
+    stats: IStats[];
 }
