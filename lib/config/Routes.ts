@@ -44,8 +44,7 @@ export class Routes {
                 res
                     .status(HttpStatus.UNAUTHORIZED)
                     .send('You shall not pass!');
-            }
-            else {
+            } else {
                 next();
             }
     }

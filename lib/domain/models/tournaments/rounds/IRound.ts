@@ -1,4 +1,2 @@
 
-export interface IRound {
-    
-}
+export interface IRound {}

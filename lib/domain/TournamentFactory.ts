@@ -6,12 +6,12 @@ import { ITournament, LeagueTournament, PlayoffTournament } from './models/tourn
 export const TTournamentFactory = Symbol('ITournamentFactory');
 
 export interface ITournamentFactory {
-    createTournament(options: CreateTournamentOptions): ITournament;
+    createTournament(options: ICreateTournamentOptions): ITournament;
 }
 
-export enum TournamentType { league = 'league', playoff = 'playoff' };
+export enum TournamentType { league = 'league', playoff = 'playoff' }
 
-export interface CreateTournamentOptions {
+export interface ICreateTournamentOptions {
     type: TournamentType;
 }
 
@@ -19,7 +19,7 @@ export interface CreateTournamentOptions {
 @Injectable()
 export class TournamentFactory implements ITournamentFactory {
 
-    public createTournament(options: CreateTournamentOptions): ITournament {
+    public createTournament(options: ICreateTournamentOptions): ITournament {
         let tournament: ITournament;
         if (options.type === TournamentType.league) {
             tournament = new LeagueTournament();

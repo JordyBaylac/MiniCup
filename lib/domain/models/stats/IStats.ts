@@ -1,4 +1,2 @@
 
-export interface IStats {
-    
-}
+export interface IStats {}
