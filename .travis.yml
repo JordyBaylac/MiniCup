@@ -1,0 +1,10 @@
+cache:
+  directories:
+    - "node_modules"
+install:
+    - npm install
+language: node_js
+node_js:
+  - "node"
+env:
+    - IS_TESTING=true

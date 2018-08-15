@@ -21,7 +21,7 @@ container.register([
     { token: TTournamentController, useClass: TournamentController },
 ]);
 
-configurePersistence(PersistenceMode.InMemory);
+configurePersistence(process.env.IS_TESTING === "true" ? PersistenceMode.InMemory : PersistenceMode.Mongoose);
 
 function configurePersistence(mode: PersistenceMode): void {
     if (mode === PersistenceMode.InMemory) {
