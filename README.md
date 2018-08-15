@@ -1,5 +1,9 @@
 # MiniTournament
 
+[![Build Status](https://travis-ci.org/JordyBaylac/MiniCup.svg?branch=master)](https://travis-ci.org/JordyBaylac/MiniCup)
+
+
+
 ## To read
 - https://medium.com/@nodepractices/were-under-attack-23-node-js-security-best-practices-e33c146cb87d
 
