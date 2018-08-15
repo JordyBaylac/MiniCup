@@ -1,12 +1,8 @@
 import { IParticipant } from "../participants";
-import { IStats } from "../stats";
+import { ISeason } from "./ISeason";
 
 export interface ITournament {
     id: string;
-
     name: string;
-
-    participants: IParticipant[];
-
-    stats: IStats[];
+    seasons: ISeason[];
 }

@@ -21,7 +21,7 @@ export class Routes {
         // Tournament
         app
             .route('/tournament')
-            .get(this.newMethod(), this.tournamentController.getTournaments.bind(this.tournamentController))
+            .get(this.checkSecurity, this.tournamentController.getTournaments.bind(this.tournamentController))
 
             // POST endpoint
             .post(this.tournamentController.addNewTournament.bind(this.tournamentController));
