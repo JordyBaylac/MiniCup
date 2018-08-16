@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "tslint -c ./tslint.json './lib/**/*.ts*'",
     "build": "tsc",
-    "test": "mocha --require ts-node/register ./lib/specifications/**/*.spec.ts"
+    "test": "mocha --require ts-node/register ./lib/specifications/**/*.spec.ts",
+    "start": "tsc && node ./dist/main.js"
   },
   "author": "",
   "license": "ISC",
