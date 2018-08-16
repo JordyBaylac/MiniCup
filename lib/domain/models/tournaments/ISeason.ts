@@ -1,6 +1,6 @@
 
 import { IParticipant } from "../participants";
-import { IRound } from "./rounds";
+import { IRound } from "./IRound";
 
 export interface ISeason {
     id: string;

@@ -1,9 +1,13 @@
+language: node_js
+node_js:
+  - node
+
 cache:
   directories:
-    - "node_modules"
-    
+    - node_modules
+
 install:
-    - npm install
+  - npm ci
 
 before_script:
   - npm run lint
@@ -12,8 +16,13 @@ before_script:
 script:
   - npm run test
 
-language: node_js
-node_js:
-  - "node"
 env:
-    - IS_TESTING=true
+  - IS_TESTING=true
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: zX8Tp3zxGMSfo9oBP9sdzF+xBzTfFzGLTafHuBUL7UA0pf8Y6TvJqW3g+OcgUiqoQ+LQPAM7n4AvjdF2XKOqMiO1l4QkFLgcHr5WbdYkd1RSwnOsA49uQOKHShy0BokgoTrnMmutsbFRNL+23LFprRcPlJWQlxmUJ3Nb3cS/s96FnmCMXmBIb+HPlCD7XIRZTitV40M30xabZuBrLxoBl5JLXIcDnYjeQS2A9qxJpwu7EhSA2yxWlItVoiWpvecKn5s+N4RKDkILV0VsWk/kdVbWKR9XcAVesN+2fWML+DIHQpqEfwZyH/X6ZQbtIvAwqIi+kr3IFxDib7tMjEsQGr7IQ8pdRRFt18wKo5onh+XnbQDuNI9xCnL84m17Cs2uf7IJ5fRjqC6ocQ+NnKN3/LNHldhHRjiTluTYmBX/xho2W63adPORfHp7HGZ45H4nQFRvrBFofNwxAhlKFRChfr+LdWPwCtWCfW7xWA/jS9O2IlGDFaeQ25XieR0a6I75FeNC4QHmKyQtFKIXe1MF6m4hmFQdyOnw2+SoXHyuUQVe99wIY1Lx4LovHF13Fu4ROBPGjYlrbV4S+P8pPGVp9T5PohMKyk+fOu49xpL029fMxjNVH4jbIhsMAGFF2UwZT0LmpXrFaQBl60NtUX3J5MBEM2lNuRwcmftUOkAB81Y=
+  app: minicup-api
+  on:
+    repo: JordyBaylac/MiniCup
