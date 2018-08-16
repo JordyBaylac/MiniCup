@@ -3,7 +3,7 @@
      "target": "es6",
      "module": "commonjs",
      "outDir": "dist",
-     "sourceMap": false,
+     "sourceMap": true,
      "declaration": true,
      "lib": [
        "es2017.object",
@@ -14,12 +14,15 @@
      "emitDecoratorMetadata": true
   },
   "files": [
+    "./node_modules/@types/mocha/index.d.ts",
      "./node_modules/@types/node/index.d.ts"
   ],
   "include": [
      "lib/**/*.ts"
   ],
   "exclude": [
-     "node_modules"
+     "node_modules",
+     "dist",
+     ".vscode"
   ]
 }

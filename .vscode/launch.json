@@ -17,6 +17,16 @@
                 "DEBUG": "*,-not_this",
                 "DEBUG_COLORS": "true"
             }
+        },
+        {
+            "name": "Run mocha",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+            "stopOnEntry": false,
+            "args": ["--no-timeouts", "--compilers", "ts:ts-node/register", "${workspaceRoot}/lib/specifications/**/*.spec.ts"],
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector"
         }
     ]
 }
